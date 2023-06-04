@@ -2,6 +2,7 @@ import React from 'react';
 
 const InstagramLoginButton = () => {
     const instagramLogin = () => {
+        // 以下の情報は重要なので本番環境では環境変数から読み取るようにする
         const clientId = '646645220169839'; // instagram app ID
         const redirectUri = 'https://www.e-pokke.com/'; //redirect uri
         const scope = 'user_profile,user_media';
