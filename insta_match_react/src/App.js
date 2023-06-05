@@ -20,7 +20,7 @@ function App() {
 
       console.log(code); // の結果正しいコードが格納されていた
 
-      /*
+      
     
       // Call the Firebase Cloud Function and get the access token
       try {
@@ -39,18 +39,18 @@ function App() {
           // 関数名とプロジェクトIDを入力している regionも変える
         );
         
-
+        console.log("This is response")
         console.log(response);
 
         // Save the access token in the state
-        //setAccessToken(response.data.access_token);
+        setAccessToken(response.data.access_token);
 
       } catch (error) {
         console.error("Error getting access token", error);
 
         console.log("fail");
       }
-      */
+      
     };
 
     getAccessToken();
