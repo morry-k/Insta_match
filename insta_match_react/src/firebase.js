@@ -1,9 +1,9 @@
 // firebase.js
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-  // Your config here
   apiKey: "AIzaSyCsjgytXRzjQ-JRzU9Kbq-4xfJQ7NR3XeY",
   authDomain: "fir-login-dc885.firebaseapp.com",
   projectId: "fir-login-dc885",
@@ -14,6 +14,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
 export default db;

@@ -18,29 +18,49 @@ function App() {
       const urlParams = new URLSearchParams(location.search);
       const code = urlParams.get("code");
 
+      console.log(code); // の結果正しいコードが格納されていた
+
+      /*
+    
       // Call the Firebase Cloud Function and get the access token
       try {
+
+        const url = `https://us-central1-fir-login-dc885.cloudfunctions.net/getInstagramAccessToken?code=${code}`;
+        console.log("this is url");
+        console.log(url);
+
+        //const response = await axios.get('https://us-central1-fir-login-dc885.cloudfunctions.net/');
+
+        
         const response = await axios.get(
-          `https://asia-northeast1-fir-login-dc885.cloudfunctions.net/getInstagramAccessToken?code=${code}`
-          // `https://us-central1-fir-login-dc885.cloudfunctions.net
+          `https://us-central1-fir-login-dc885.cloudfunctions.net/getInstagramAccessToken?code=${code}`
           // `https://us-central1-your-firebase-project-id.cloudfunctions.net
+          // asia-northeast1
           // 関数名とプロジェクトIDを入力している regionも変える
         );
+        
+
+        console.log(response);
 
         // Save the access token in the state
-        setAccessToken(response.data.access_token);
+        //setAccessToken(response.data.access_token);
+
       } catch (error) {
         console.error("Error getting access token", error);
+
+        console.log("fail");
       }
+      */
     };
 
     getAccessToken();
+    
   }, [location]);
 
   return (
     <div className="App">
       <h1>Insta match</h1>
-      <UserComponent />
+      <UserComponent access_token={accessToken} />
       <InstagramLoginButton />
 
       {accessToken ? (
@@ -48,6 +68,7 @@ function App() {
       ) : (
         <p>Loading...</p>
       )}
+      
     </div>
   );
 }
