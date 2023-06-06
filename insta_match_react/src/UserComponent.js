@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
+import { collection, addDoc, setDoc, doc, getDocs, query, where } from "firebase/firestore";
 import db from './firebase';
 import getUserData from './InstagramAPI';
 
@@ -17,7 +17,11 @@ function UserComponent({ access_token }) {
           const userData = response.data;
 
           // Add a new document with a generated id.
-          await addDoc(collection(db, "users"), userData);
+          //await addDoc(collection(db, "users"), userData);
+
+          // Set the document with the Instagram user's ID
+          await setDoc(doc(db, 'users', userData.id), userData);
+
           
           console.log("Document successfully written!");
 
