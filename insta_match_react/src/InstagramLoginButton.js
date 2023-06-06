@@ -9,6 +9,9 @@ const InstagramLoginButton = () => {
 
         const authUrl = `https://api.instagram.com/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${scope}&response_type=code`;
 
+        // Remove the access token from the local storage
+        localStorage.removeItem('access_token');
+        
         window.open(authUrl, '_blank');
     };
 

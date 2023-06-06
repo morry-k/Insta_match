@@ -15,8 +15,6 @@ function App() {
       const urlParams = new URLSearchParams(location.search);
       const code = urlParams.get("code");
 
-      console.log(code);
-
       // Call the Firebase Cloud Function and get the access token
       try {
         const response = await axios.post(
@@ -28,6 +26,13 @@ function App() {
         console.log(response.data.result.access_token);  
         // Save the access token in the state
         setAccessToken(response.data.result.access_token);
+
+        //access tokenの保持　
+        const newAccessToken = response.data.result.access_token;
+        // Save the access token in the state and local storage
+        setAccessToken(newAccessToken);
+        window.localStorage.setItem('accessToken', newAccessToken);
+
       } catch (error) {
         console.error("Error getting access token", error);
       }
@@ -36,14 +41,24 @@ function App() {
     getAccessToken();
   }, [location]);
 
+  const handleLogout = () => {
+    // Clear the access token from the state and local storage
+    setAccessToken(null);
+    window.localStorage.removeItem('accessToken');
+  };
+
   return (
     <div className="App">
       <h1>Insta match</h1>
       <UserComponent access_token={accessToken} />
       <InstagramLoginButton />
 
+      {/* アクセストークンの有無に応じて対応を変えている */}
       {accessToken ? (
+        <>
         <p>Access Token: {accessToken}</p>
+        <button onClick={handleLogout}>Logout</button>
+      </>
       ) : (
         <p>Loading...</p>
       )}
