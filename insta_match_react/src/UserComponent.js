@@ -32,7 +32,10 @@ function UserComponent({ access_token }) {
         }
       }
     }
-    fetchAndSaveUserData();
+    
+    if (access_token) {  // access_tokenがnull以外のときだけAPIリクエストを行う
+      fetchAndSaveUserData();
+    }
   }, [access_token]);
 
   return (
