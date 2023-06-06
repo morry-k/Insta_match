@@ -52,17 +52,16 @@ function App() {
       <h1>Insta match</h1>
       <UserComponent access_token={accessToken} />
       <InstagramLoginButton />
-
+  
       {/* アクセストークンの有無に応じて対応を変えている */}
       {accessToken ? (
-        <>
         <p>Access Token: {accessToken}</p>
-        <button onClick={handleLogout}>Logout</button>
-      </>
       ) : (
         <p>Loading...</p>
       )}
-      
+  
+      <button onClick={handleLogout}>Logout</button>
+        
     </div>
   );
 }
