@@ -12,7 +12,7 @@ const InstagramLoginButton = () => {
         // Remove the access token from the local storage
         localStorage.removeItem('access_token');
         
-        window.open(authUrl, '_blank');
+        window.location.href = authUrl; // 現在のタブでInstagramのログインページに移動
     };
 
     return (
@@ -21,5 +21,3 @@ const InstagramLoginButton = () => {
 };
 
 export default InstagramLoginButton;
-
-
