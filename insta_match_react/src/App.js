@@ -54,13 +54,6 @@ function App() {
       <UserComponent access_token={accessToken} />
       <InstagramLoginButton />
   
-      {/* アクセストークンの有無に応じて対応を変えている */}
-      {accessToken ? (
-        <p>Access Token: {accessToken}</p>
-      ) : (
-        <p>Loading...</p>
-      )}
-  
       <button onClick={handleLogout}>Logout</button>
 
       <ChooseUser access_token={accessToken} />
