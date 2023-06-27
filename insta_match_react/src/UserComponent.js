@@ -88,20 +88,16 @@ function UserComponent({ access_token }) {
 
           {/* Display user media data if we have it */}
           {userMedia.length > 0 ? (
-            userMedia.map((media, index) => (
-              <div key={index}>
-                {media.media_type === "IMAGE" && (
-                  <img src={media.media_url} alt={media.caption} />
-                )}
-                {media.media_type === "VIDEO" && (
-                  <video controls src={media.media_url} />
-                )}
-                <p>{media.caption}</p>
-              </div>
-            ))
-          ) : (
-            <p>Loading user media data...</p>
-          )}
+          userMedia.map((media, index) => (
+            <div key={index}>
+              {media.media_type === "IMAGE" && <img src={media.media_url} alt={media.caption} style={{ width: '200px', height: '200px', objectFit: 'cover' }} />}
+              {media.media_type === "VIDEO" && <video controls src={media.media_url} />}
+              <p>{media.caption}</p>
+            </div>
+          ))
+        ) : (
+          <p>Loading user media data...</p>
+        )}
         </>
       ) : (
         <p>Loading user data...</p>
