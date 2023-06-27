@@ -1,6 +1,7 @@
 import './App.css';
 import UserComponent from './UserComponent';
 import InstagramLoginButton from './InstagramLoginButton';
+import ChooseUser from './choose_user';
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useLocation } from "react-router-dom";
@@ -61,6 +62,8 @@ function App() {
       )}
   
       <button onClick={handleLogout}>Logout</button>
+
+      <ChooseUser />
         
     </div>
   );
