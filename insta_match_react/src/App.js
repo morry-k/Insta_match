@@ -63,7 +63,7 @@ function App() {
   
       <button onClick={handleLogout}>Logout</button>
 
-      <ChooseUser />
+      <ChooseUser access_token={accessToken} />
         
     </div>
   );
