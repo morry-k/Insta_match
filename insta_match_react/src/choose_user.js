@@ -9,6 +9,7 @@ const ChooseUser = ({ access_token }) => {
   const [username, setUsername] = useState("");
   const [confirmed, setConfirmed] = useState(false);
   const [userData, setUserData] = useState(JSON.parse(window.localStorage.getItem("userData")));
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     if(access_token) {
@@ -36,13 +37,20 @@ const ChooseUser = ({ access_token }) => {
       await setDoc(userDoc, { chosenUsername: username }, { merge: true });
     }
 
-    setUsername("");
     setConfirmed(false);
+    setSuccessMessage(`${username}さんをあなたの好きな人として登録しました。`);
+
+    // Clear the username and success message after 5 seconds
+    setTimeout(() => {
+      setUsername("");
+      setSuccessMessage("");
+    }, 5000);
   };
 
   const handleNo = () => {
     setUsername("");
     setConfirmed(false);
+    setSuccessMessage("");
   };
 
   return (
@@ -58,6 +66,7 @@ const ChooseUser = ({ access_token }) => {
           <button onClick={handleNo}>いいえ</button>
         </div>
       )}
+      {successMessage && <p>{successMessage}</p>}
     </div>
   );
 };
