@@ -33,7 +33,7 @@ function UserComponent({ access_token }) {
           //await addDoc(collection(db, "users"), userData);
 
           // Set the document with the Instagram user's ID
-          await setDoc(doc(db, "users", userData.id), userData);
+          await setDoc(doc(db, "users", userData.id), userData, { merge: true });
 
           console.log("Document successfully written!");
 
